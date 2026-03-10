@@ -5,26 +5,27 @@
 #                                                      :::      ::::::::    #
 #  ft_vault_security.py                              :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: cehenrot <cehenrot@student.42.fr>         +#+  +:+       +#+         #
+#  By: cehenrot <cehenrot@student.42lyon.fr>     +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/03/09 18:59:32 by cehenrot        #+#    #+#               #
-#  Updated: 2026/03/10 14:52:36 by cehenrot        ###   ########.fr        #
+#  Updated: 2026/03/10 17:18:27 by cehenrot        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-NAME_FILE = "security_protocols.txt"
-NEW_FILE = "classified_data.txt"
+CLASSIFIELD = "classified_data.txt"
+SECURITY = "security_protocols.txt"
+STRING = "Vault automatically sealed upon completion"
 
 
-def create_file(name: str, content: str) -> None:
+def append_arg_file(name: str, content: str) -> None:
 
     with open(name, 'a+') as f:
-        f.write(content)
+        f.write("\n" + content)
 
 
 def read_file(name: str) -> str:
 
-    with open(name, 'r+') as f:
+    with open(name, 'r') as f:
         content = f.read()
     return content
 
@@ -38,18 +39,19 @@ def main():
     print("\nSECURE EXTRACTION:")
     try:
 
-        content = read_file(NAME_FILE)
+        content = read_file(CLASSIFIELD)
+        print(content)
     except (PermissionError, FileNotFoundError, OSError,
             FileExistsError) as e:
-        print(f"error {NAME_FILE}: {e} [KO]")
+        print(f"error {CLASSIFIELD}: {e} [KO]")
 
     print("\nSECURE PRESERVATION:")
     try:
-        create_file(NEW_FILE, content)
-        print(read_file(NEW_FILE))
+        append_arg_file(SECURITY, STRING)
+        print(read_file(SECURITY))
     except (PermissionError, FileNotFoundError, OSError,
             FileExistsError) as e:
-        print(f"error {NEW_FILE}: {e} [KO]")
+        print(f"error {SECURITY}: {e} [KO]")
 
     print("\nAll vault operations completed with maximum security.")
 
