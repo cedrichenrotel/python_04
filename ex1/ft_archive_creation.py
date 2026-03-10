@@ -5,10 +5,10 @@
 #                                                      :::      ::::::::    #
 #  ft_archive_creation.py                            :+:      :+:    :+:    #
 #                                                  +:+ +:+         +:+      #
-#  By: cehenrot <cehenrot@student.42lyon.fr>     +#+  +:+       +#+         #
+#  By: cehenrot <cehenrot@student.42.fr>         +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/03/09 13:59:07 by cehenrot        #+#    #+#               #
-#  Updated: 2026/03/09 17:22:40 by cehenrot        ###   ########.fr        #
+#  Updated: 2026/03/10 10:54:59 by cehenrot        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -22,8 +22,7 @@ def main():
             f.write("[ENTRY 001] New quantum algorithm discovered\n"
                     "[ENTRY 002] Efficiency increased by 347%\n"
                     "[ENTRY 003] Archived by Data Archivist trainee")
-    except PermissionError:
-        print("problem encountered when creating the file [KO]")
+    except (PermissionError, FileNotFoundError, OSError, FileExistsError):
         return
 
     print("Storage unit created successfully...")
