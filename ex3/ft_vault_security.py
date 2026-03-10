@@ -8,27 +8,23 @@
 #  By: cehenrot <cehenrot@student.42.fr>         +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/03/09 18:59:32 by cehenrot        #+#    #+#               #
-#  Updated: 2026/03/10 11:59:50 by cehenrot        ###   ########.fr        #
+#  Updated: 2026/03/10 14:52:36 by cehenrot        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-NAME_FILE = "quantum encryption"
-NEW_FILE = "new security protocols"
-CONTENT1 = ("[CLASSIFIED] Quantum encryption keys recovered\n"
-            "[CLASSIFIED] Archive integrity: 100%")
-CONTENT2 = ("[CLASSIFIED] New security protocols archived\n"
-            "Vault automatically sealed upon completion")
+NAME_FILE = "security_protocols.txt"
+NEW_FILE = "classified_data.txt"
 
 
 def create_file(name: str, content: str) -> None:
 
-    with open(name, 'w') as f:
+    with open(name, 'a+') as f:
         f.write(content)
 
 
 def read_file(name: str) -> str:
 
-    with open(name, 'r') as f:
+    with open(name, 'r+') as f:
         content = f.read()
     return content
 
@@ -41,15 +37,15 @@ def main():
 
     print("\nSECURE EXTRACTION:")
     try:
-        create_file(NAME_FILE, CONTENT1)
-        print(read_file(NAME_FILE))
+
+        content = read_file(NAME_FILE)
     except (PermissionError, FileNotFoundError, OSError,
             FileExistsError) as e:
         print(f"error {NAME_FILE}: {e} [KO]")
 
     print("\nSECURE PRESERVATION:")
     try:
-        create_file(NEW_FILE, CONTENT2)
+        create_file(NEW_FILE, content)
         print(read_file(NEW_FILE))
     except (PermissionError, FileNotFoundError, OSError,
             FileExistsError) as e:

@@ -1,1 +1,0 @@
-Ce module est sans interet, bien que les sujets sur lequelle il traite soit interressant, il comporte trop de hardcoding qui empeche une bonne comprehention.
